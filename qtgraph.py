@@ -8,6 +8,7 @@ import serial
 from random import randint
 
 PORT = 'COM4'
+RESISTANCE = 10000
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -48,7 +49,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.U2_temp = float(self.data[1]) / 1024 * 5
                     self.U1_temp = float(self.data[0]) / 1024 * 5
                     self.U2.append(abs(self.U2_temp - self.U1_temp))
-                    self.I.append(self.U2_temp / 10000)
+                    self.I.append(self.U2_temp / RESISTANCE)
             else:
                 self.U2.append(float(0))
                 self.I.append(float(0))
@@ -70,7 +71,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if len(self.data) == 2:
             if len(self.data[1]) <= 7:
                 self.U2.append(abs(self.U2_temp - self.U1_temp))
-                self.I.append(self.U2_temp / 10000)
+                self.I.append(self.U2_temp / RESISTANCE)
         else:
             self.U2.append(float(0))
         if not self.is_stopped:
@@ -118,7 +119,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.U2_temp = float(self.data[1]) / 1024 * 5
                     self.U1_temp = float(self.data[0]) / 1024 * 5
                     self.U2.append(abs(self.U2_temp - self.U1_temp))
-                    self.I.append(self.U2_temp / 10000)
+                    self.I.append(self.U2_temp / RESISTANCE)
             else:
                 self.U2.append(float(0))
                 self.I.append(float(0))
@@ -173,7 +174,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.U2_temp = float(self.data[1]) / 1024 * 5
                     self.U1_temp = float(self.data[0]) / 1024 * 5
                     self.U2.append(abs(self.U2_temp - self.U1_temp))
-                    self.I.append(self.U2_temp / 10000)
+                    self.I.append(self.U2_temp / RESISTANCE)
             else:
                 self.U2.append(float(0))
                 self.I.append(float(0))
